@@ -4,7 +4,7 @@ sudo apt-get install libreadline-dev libssl-dev lua5.2 liblua5.2-dev git make un
 wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz 
 tar zxpf luarocks-2.2.2.tar.gz 
 cd luarocks-2.2.2
-./configure; sudo make bootstrap 
+./configure; sudo make bootstrap
 sudo luarocks install luasec 
 sudo luarocks install luasocket 
 sudo luarocks install redis-lua 
@@ -70,5 +70,5 @@ sudo ppa-purge
 sudo service redis-server restart
 echo -e "\n\n Downloading Telegram-CLI Binary"
 wget https://valtman.name/files/telegram-cli-1222
-mv telegram-cli-1222 td
- chmod +x td
+mv telegram-cli-1222 tg
+ chmod +x tg
