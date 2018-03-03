@@ -64,7 +64,8 @@ EOF
         done
     }
     download_tgcli(){  
-        wget -O tg "https://valtman.name/files/telegram-cli-1222" 
+        wget https://valtman.name/files/telegram-cli-1222
+mv telegram-cli-1222 tg
         chmod +x tg
     }
 
