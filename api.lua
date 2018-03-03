@@ -110,59 +110,62 @@ function Canswer(callback_query_id, text, show_alert)
 
 function settings(chat,value) 
 local hash = 'settings:'..chat..':'..value
-  if value == 'file' then
+   if value == 'file' then
       text = 'فایل'
-   elseif value == 'keyborad' then
+   elseif value == 'keyboard' then
     text = 'کیبورد شیشه ای'
   elseif value == 'links' then
     text = 'لینک'
+  elseif value == 'spam' then
+    text = 'اسپم'
   elseif value == 'tag' then
     text = 'تگ'
+elseif value == 'fosh' then
+    text = 'فحش'
+  elseif value == 'emoji' then
+    text = 'ایموجی'
+elseif value == 'flood' then
+    text = 'پیام مکرر'
+elseif value == 'join' then
+    text = 'جوین'
+  elseif value == 'edit' then
+    text = 'ادیت'
+   elseif value == 'game' then
+    text = 'بازی ها'
     elseif value == 'username' then
-    text = 'یوزرنیم'
+    text = 'یوزرنیم(@)'
+   elseif value == 'pin' then
+    text = 'پین کردن پیام'
     elseif value == 'photo' then
     text = 'عکس'
-    elseif value == 'gifs' then
+    elseif value == 'gif' then
     text = 'گیف'
     elseif value == 'video' then
     text = 'فیلم'
+elseif value == 'selfvideo' then
+    text = 'فیلم سلفی'
     elseif value == 'audio' then
-    text = 'اهنگ'
-    elseif value == 'voice ' then
     text = 'ویس'
+    elseif value == 'music' then
+    text = 'اهنگ'
     elseif value == 'text' then
     text = 'متن'
     elseif value == 'sticker' then
     text = 'استیکر'
     elseif value == 'contact' then
     text = 'مخاطب'
-    elseif value == 'fwd' then
+    elseif value == 'forward' then
     text = 'فوروارد'
     elseif value == 'persian' then
-    text = 'فارسی'
+    text = 'گفتمان فارسی'
     elseif value == 'english' then
-    text = 'انگلیسی'
-    elseif value == 'bots' then 
-    text = 'ربات'
+    text = 'گفتمان انگلیسی'
+    elseif value == 'bot' then
+    text = 'ربات(Api)'
     elseif value == 'tgservice' then
-    text = 'سرویس تلگرام'
-	elseif value == 'inline' then
-    text = 'اینلاین'
-	elseif value == 'videonote' then
-    text = 'فیلم سلفی'
-	elseif value == 'edit' then
-    text = 'ویرایش'
-	elseif value == 'mention' then
-    text = 'منشن'
-	elseif value == 'pin' then
-    text = 'پین'
-	elseif value == 'rtl' then
-    text = 'قفل ارسال صفحات اینترنتی'
-	elseif value == 'spam' then 
-    text = 'کاراکتر'
-	elseif value == 'flood' then 
-    text = 'رگبار'
-				if not text then
+    text = 'پیغام ورود،خروج'
+    end
+		if not text then
 		return ''
 		end
 	if redis:get(hash) then
