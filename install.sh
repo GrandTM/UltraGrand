@@ -1,10 +1,11 @@
 sudo apt-get update 
 sudo apt-get upgrade
 sudo apt-get install libreadline-dev libssl-dev lua5.2 liblua5.2-dev git make unzip redis-server curl libcurl4-gnutls-dev
-wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz 
-tar zxpf luarocks-2.2.2.tar.gz 
-cd luarocks-2.2.2
-./configure; sudo make bootstrap
+ wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz
+ tar zxpf luarocks-2.2.2.tar.gz
+ mv luarocks-2.2.2 luarocks
+ cd luarocks
+ ./configure; sudo make bootstrap
 sudo luarocks install luasec 
 sudo luarocks install luasocket 
 sudo luarocks install redis-lua 
