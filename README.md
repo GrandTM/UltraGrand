@@ -2,9 +2,8 @@
 
 * * *
 
-# Install source
+## Install source
 
-* * *
 cd $HOME
 
 git clone https://github.com/GrandTM/UltraGrand.git
@@ -21,12 +20,12 @@ chmod +x api.sh
 
 ./cli.sh 
 
-# Enter a phone number | confirmation code.
+ Enter a phone number | confirmation code.
 
 * * * 
-#Run Helper
+## Run Helper
 
-* * * 
+
 cd UltraGrand
 
 ./api.sh
