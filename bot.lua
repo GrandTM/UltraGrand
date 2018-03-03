@@ -1,5 +1,5 @@
 _config = dofile('config.lua')
-utf8 = require "lua-utf8"
+utf8 = dofile('utf8.lua')
 serpent = require("serpent")
 redis_ = require("redis")
 socket = require("socket")
