@@ -6,7 +6,7 @@
 
 cd $HOME
 
-git clone https://github.com/GrandTM/UltraGrand.git
+git clone https://github.com/GrandTM/UltraGrand/
 
 cd UltraGrand
 
