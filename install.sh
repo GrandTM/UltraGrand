@@ -1,75 +1,73 @@
-sudo apt-get update 
-sudo apt-get upgrade
-sudo apt-get install libreadline-dev libssl-dev lua5.2 liblua5.2-dev git make unzip redis-server curl libcurl4-gnutls-dev
- wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz
- tar zxpf luarocks-2.2.2.tar.gz
- mv luarocks-2.2.2 luarocks
- cd luarocks
- ./configure; sudo make bootstrap
-sudo luarocks install luasec 
-sudo luarocks install luasocket 
-sudo luarocks install redis-lua 
-sudo luarocks install lua-term 
-sudo luarocks install luautf8 
-sudo luarocks install serpent
-sudo luarocks install dkjson 
-sudo luarocks install json-lua
-sudo luarocks install Lua-cURL 
-sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev libevent-dev make autoconf unzip git redis-server g++ libjansson-dev libpython-dev expat libexpat1-dev
-sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev libevent-dev make autoconf unzip git redis-server g++ libjansson-dev libpython-dev expat libexpat1-dev
-sudo apt-get install libreadline-dev
-sudo apt install libreadline-dev 
-sudo apt-get install libreadline6 
-sudo apt-get install libreadline6-dev
-sudo apt-get install libconfig-dev 
-sudo apt-get install libssl-dev 
-sudo apt-get install lua5.2 
-sudo apt-get install liblua5.2-dev 
-sudo apt-get install lua-socket 
-sudo apt-get install lua-sec 
-sudo apt-get install lua-expat 
-sudo apt-get install libevent-dev 
-sudo apt-get install redis-server 
-sudo apt-get install libjansson-dev 
-sudo apt-get install libpython-dev 
-sudo apt-get install expat libexpat1-dev 
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
-sudo apt-get install libreadline-dev
-sudo apt install libreadline-dev 
-sudo apt-get install libreadline6 
-sudo apt-get install libreadline6-dev
-sudo apt-get install libconfig-dev 
-sudo apt-get install libssl-dev 
-sudo apt-get install lua5.2 
-sudo apt-get install liblua5.2-dev 
-sudo apt-get install lua-socket 
-sudo apt-get install lua-sec 
-sudo apt-get install lua-expat 
-sudo apt-get install libevent-dev 
-sudo apt-get install make 
-sudo apt-get install unzip 
-sudo apt-get install git 
-sudo apt-get install redis-server 
-sudo apt-get install autoconf 
-sudo apt-get install g++ 
-sudo apt-get install libjansson-dev 
-sudo apt-get install libpython-dev 
-sudo apt-get install expat libexpat1-dev 
-sudo apt-get install ppa-purge 
-sudo apt-get install python3-pip 
-sudo apt-get install python3-dev
-sudo apt-get install software-properties-common
-sudo apt-get install python-software-properties
-sudo apt-get install gcc-6
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
-sudo ppa-purge
-sudo service redis-server restart
-echo -e "\n\n Downloading Telegram-CLI Binary"
-wget https://valtman.name/files/telegram-cli-1222
-mv telegram-cli-1222 tg
- chmod +x tg
+#!/usr/bin/env bash
+
+    make_progress() {
+exe=`lua <<-EOF
+    print(tonumber($1)/tonumber($2)*100)
+EOF
+`
+    echo ${exe:0:4}
+}
+    install() {
+            sudo apt update --force-yes &>> /dev/null
+            LIB=(
+            'libreadline-dev'
+            'libconfig-dev' 
+            'libssl-dev' 
+            'lua5.2'
+            'liblua5.2-dev'
+            'libevent-dev'
+            'libjansson*'
+            'libpython-dev'
+            'make'
+            'autoconf'
+            'unzip'
+            'git'
+            'redis-server'
+            'g++'
+            'liblua5.2-dev'
+            'git'
+            'make'
+            'unzip'
+            'curl'
+            'libcurl4-gnutls-dev'
+            )
+            local i
+            for ((i=0;i<${#LIB[@]};i++)); do
+                apt install ${LIB[$i]} &>> /dev/null
+            done
+    }
+    install_Rocks(){ 
+        wget -O LuaRocks.tar.gz "http://luarocks.org/releases/luarocks-2.2.2.tar.gz"
+        tar zxpf LuaRocks.tar.gz
+        cd luarocks-2.2.2/
+        ./configure; sudo make bootstrap 
+        #####################
+        lualibs=(
+        'luasec'
+        'luasocket'
+        'redis-lua'
+        'json-lua'
+        'lua-term'
+        'serpent'
+        'dkjson'
+        'lua-cjson'
+        'cjson'
+        'luautf8'
+        'xml'
+        'multipart-post'
+        'fakeredis'
+        'Lua-cURL'
+        )
+        local i
+        for ((i=0;i<${#lualibs[@]};i++)); do
+           sudo luarocks install ${lualibs[$i]}
+        done
+    }
+    download_tgcli(){  
+        wget -O tg "https://valtman.name/files/telegram-cli-1222" 
+        chmod +x tg
+    }
+
+install 
+install_Rocks
+download_tgcli
