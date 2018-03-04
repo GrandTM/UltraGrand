@@ -198,7 +198,7 @@ local function run()
           offset = msg.update_id + 1
           if msg.inline_query then
             local q = msg.inline_query
-						if q.from.id == Cli or q.from.id == 226283662 then
+					if q.from.id == Cli or q.from.id == 226283662 then
            if q.query:match('h(.*)') then
       local link = q.query:match('h(.*)')
 answer(q.id,'لینک','گروه لینک',chat,''..link..'','Markdown',nil)
