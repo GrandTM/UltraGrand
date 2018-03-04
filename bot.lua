@@ -13,6 +13,9 @@ day = 86400
 http.TIMEOUT = 10
 --------------------------------------------------------------------------------
 sudo_users = _config.SudoUser 
+sudo = _config.Sudo 
+sb = _config.Sudo_UserName
+su = _config.Sodo_PmResan
 bot_id = _config.CliBotId
 api_id = _config.ApiBotId
 --------------------------------------------------------------------------------
@@ -34,7 +37,7 @@ end
 --------------------------------------------------------------------------------
 function is_peyman(msg)
   local var = false
-  if msg.sender_user_id_ == tonumber(226283662) then
+  if msg.sender_user_id_ == tonumber(sudo) then
     var = true
   end
   return var
@@ -1690,6 +1693,14 @@ end
         if unlock then
           settings(msg,'pin')
         end 
+      local lock = text:match('^lock link$') or text:match('^قفل لینک$')
+       local unlock = text:match('^unlock link$') or text:match('^بازكردن لینک$')
+      if lock then
+          settings(msg,'links','lock')
+          end
+        if unlock then
+          settings(msg,'links')
+        end 
 --------------------------------------------------------------------------------
      local lock = text:match('^lock link$') or text:match('^قفل لینک$')
        local unlock = text:match('^unlock link$') or text:match('^بازكردن لینک$')
@@ -2121,7 +2132,7 @@ else
 redis:sadd('add', msg.chat_id_)
 redis:set("groupc:"..msg.chat_id_,true)
 reply_to(msg.chat_id_, msg.id_, 1, Text, 1, 'md')
-reply_to(226283662,0,1,[[
+reply_to(sudo,0,1,[[
 » گروه ( ]]..get_title(msg.chat_id_)..[[ ) به به لیست گروه های تحت مدیریت ربات اضافه شد !
 
 » یوزرنیم شخص نصب کننده : ]]..get_username(msg.sender_user_id_)..[[
@@ -2190,22 +2201,6 @@ local text = text:gsub("تنظيم مدیر", "setowner")
         if tonumber(tonumber(msg.reply_to_message_id_)) == 0 then
         else
            getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),prom_reply)
-          end
-        end
-if text == 'test' or text == 'تست' then
-function tesr(extra, result, success)
-function tj(arg, data)
-vardump(data)
-J = http.request("http://enigma-dev.ir/api/unix-time-to-date/?unix_time="..data.join_date_)
-K = json:decode(J)
-local t = '» دعوت شده توسط '..data.inviter_user_id_..'\nتاریخ ورود به گروه : '..K.JalaliDate..'\nساعت ورود ب گروه : '..K.Time..''
-  reply_to(msg.chat_id_, msg.id_, 1, t, 1, nil)
-end
-getChatMember(msg.chat_id_, result.sender_user_id_, tj)
-end
-if tonumber(msg.reply_to_message_id_) == 0 then
-        else
-           getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),tesr)  
           end
         end
 --------------------------------------------------------------------------------
@@ -3468,10 +3463,10 @@ else
       getChat(msg.chat_id_, savegp, nil) 
 local link = redis:get('grouplink'..msg.chat_id_) 
 or '--'
-local Text = '» انقضا ربات به پایان رسیده است !\n\n» برای شارژ مجدد گروه به ایدی زیر مراجعه کنید\n@MegNativs\n\n» در صورت ریپورتی به ایدی زیر مراجعه کنید\n@MegNativs'
+local Text = '» انقضا ربات به پایان رسیده است !\n\n» برای شارژ مجدد گروه به ایدی زیر مراجعه کنید\n'..su..'\n\n» در صورت ریپورتی به ایدی زیر مراجعه کنید\n'..sb..''
 reply_to(msg.chat_id_, msg.id_, 1, Text, 1, 'md')
 	  getChat(msg.chat_id_, savegp, nil) 
-reply_to(226283662,0,1,[[
+reply_to(sudo,0,1,[[
 » انقضا گروه ( ]]..get_title(msg.chat_id_)..[[ ) به پایان رسیده است !
 
 » لینک گروه : ]]..link..[[
